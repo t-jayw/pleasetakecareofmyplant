@@ -6,16 +6,14 @@ import praw
 
 from config import user_agent, user_name, password
 
-
 # App Constants
-WATER_SUBMISSION_TIME_SECONDS = 3600
+WATER_SUBMISSION_TIME_LIMIT = 3600
 WATER_ME_SUBREDDIT = 'tylerjaywood_test'
 TITLE_TRIGGER = 'Water the plant'
 
 # App setup
 r = praw.Reddit(user_agent=user_agent)
 r.login(user_name, password)
-
 subreddit_root = r.get_subreddit(WATER_ME_SUBREDDIT)
 
 if not os.path.isfile("water_submissions.txt"):
@@ -32,8 +30,11 @@ def is_trigger(submission):
     t = submission.title
     return True if re.match(TITLE_TRIGGER, t, re.IGNORECASE) else False
 
-# Pull new watering submissions
+def water_submission_closed(submission):
+    """Checks if submission is created w/in time limit"""
+    None
 
+# Pull new watering submissions and record them
 for submission in subreddit_root.get_new():
     if is_trigger(submission):
         if submission.id not in water_submissions:
@@ -43,13 +44,13 @@ for submission in subreddit_root.get_new():
         else:
             continue
 
-print water_submissions
-
 with open("water_submissions.txt", 'w') as f:
     for id in water_submissions:
         f.write(id + "\n")
 
-
+# Iterate through, check if submission thread is still active
+#for submission in water_submissions:
+#    if !water_submission_closed...
 
 
 
