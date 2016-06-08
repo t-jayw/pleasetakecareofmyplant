@@ -13,4 +13,4 @@ def on_off():
     time.sleep(5)
     GPIO.output(OUTPUT_PIN, False)
 
-
+    GPIO.cleanup()
