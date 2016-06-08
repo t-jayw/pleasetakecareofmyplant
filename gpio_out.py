@@ -8,8 +8,9 @@ OUTPUT_PIN = 23
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(OUTPUT_PIN, GPIO.OUT)
 
-GPIO.output(OUTPUT_PIN, True)
-time.sleep(5)
-GPIO.output(OUTPUT_PIN, False)
+def on_off():
+    GPIO.output(OUTPUT_PIN, True)
+    time.sleep(5)
+    GPIO.output(OUTPUT_PIN, False)
 
 

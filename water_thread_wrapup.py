@@ -6,6 +6,7 @@ import re
 
 from datetime import datetime as dt
 
+import gpio_out as g
 import config as c
 import water_post_template as wpt
 
@@ -62,6 +63,7 @@ for t in tuple_log:
 # Reply to submission
 if total > 0:
     s.edit('water!')
+    g.on_off()
 else:
     s.edit('no water')
 
