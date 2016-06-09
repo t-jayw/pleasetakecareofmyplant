@@ -8,8 +8,8 @@ OUTPUT_PIN = 23
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(OUTPUT_PIN, GPIO.OUT)
 
-def on_off(time = 25):
+def on_off():
     GPIO.output(OUTPUT_PIN, True)
-    time.sleep(time)
+    time.sleep(3)
     GPIO.output(OUTPUT_PIN, False)
     GPIO.cleanup()

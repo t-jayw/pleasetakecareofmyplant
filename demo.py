@@ -6,7 +6,7 @@ url = 'http://www.pleasetakecareofmyplant.com/demo.html'
 
 r = requests.get(url)
 
-if r == 'yep':
-    gpio_out.on_off(3)
+if r.content == 'yep':
+    gpio_out.on_off()
 else:
     None
