@@ -71,21 +71,3 @@ with open('comment_vote_log.txt', 'a+') as f:
     f.write(str(tuple_log))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
