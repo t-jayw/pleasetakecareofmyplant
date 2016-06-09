@@ -15,7 +15,7 @@ r = praw.Reddit(user_agent=c.user_agent)
 r.login(c.user_name, c.password)
 sr = r.get_subreddit(c.subreddit)
 
-with open('daily_thread.txt', 'r+') as f:
+with open('/home/pi/daily_thread.txt', 'r+') as f:
     thread = f.read()
 
 s = r.get_submission(submission_id = thread)
@@ -42,9 +42,9 @@ def reply_to_vote(comment, score=None):
     if score == 0:
         return None
     elif score == 1:
-        comment.reply('thanks')
+        comment.reply("thanks, I've recorded your vote to water!")
     elif score == -1:
-        comment.reply('thanks')
+        comment.reply("thanks, I've recorded your vote to not water!")
 
 # Record comments
 tuple_log = []

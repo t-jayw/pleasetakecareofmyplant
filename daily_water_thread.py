@@ -20,7 +20,7 @@ s = sr.submit(post_title, text=post_body)
 
 s.sticky()
 
-with open('daily_thread.txt', 'w') as f:
+with open('/home/pi/daily_thread.txt', 'w') as f:
     f.write(s.id)
     
 

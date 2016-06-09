@@ -10,7 +10,7 @@ GPIO.setup(OUTPUT_PIN, GPIO.OUT)
 
 def on_off():
     GPIO.output(OUTPUT_PIN, True)
-    time.sleep(5)
+    time.sleep(15)
     GPIO.output(OUTPUT_PIN, False)
 
     GPIO.cleanup()
