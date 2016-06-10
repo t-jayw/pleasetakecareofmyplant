@@ -3,6 +3,7 @@
 import os
 import praw
 import re
+import time
 
 from datetime import datetime as dt
 
@@ -71,7 +72,8 @@ wrapup = posts.body_edit.format(posts.now_formatted, len(recorded_yes), len(reco
 # Reply to submission
 if total > 0:
     s.edit(wrapup)
-    g.on_off()
+    time.sleep(600)
+    g.on_off(20) 
 else:
     s.edit(wrapup)
 
