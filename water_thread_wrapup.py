@@ -67,7 +67,7 @@ if total > 0:
 else:
     s.edit('no water')
 
-with open('comment_vote_log.txt', 'a+') as f:
+with open('/home/pi/comment_vote_log.txt', 'a+') as f:
     f.write(str(tuple_log))
 
 
