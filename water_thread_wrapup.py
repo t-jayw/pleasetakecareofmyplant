@@ -54,6 +54,7 @@ recorded_no ={}
 for x in comments:
     score = get_comment_score(x)
     tuple_log = [(s.id, x.name, x.author.name, x.body, score)]
+    print str(tuple_log)
     if score == 1:
         d = recorded_yes
     elif score == -1:
