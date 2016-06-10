@@ -17,6 +17,7 @@ sr = r.get_subreddit(c.subreddit)
 
 with open('/home/pi/daily_thread.txt', 'r+') as f:
     thread = f.read()
+    f.close()
 
 s = r.get_submission(submission_id = thread)
 s.lock()
@@ -47,18 +48,23 @@ def reply_to_vote(comment, score=None):
         comment.reply("thanks, I've recorded your vote to not water!")
 
 # Record comments
-tuple_log = []
+recorded_yes = {}
+recorded_no ={}
+
 for x in comments:
-    score = get_comment_score(x) 
-    tuple_log += [(s.id, x.name, x.author.name, x.body, score)]
-    reply_to_vote(x, score)
+    score = get_comment_score(x)
+    tuple_log = [(s.id, x.name, x.author.name, x.body, score)]
+    if score = 1:
+        d = recorded_yes
+    elif score = -1:
+        d = recorded_no
+    else:
+        continue
+    if not d.has_key(tuple_log[2]):
+        d[tuple_log[2]] = tuple_log
+        reply_to_vote(x, tuple_log[4])
 
-print tuple_log
-
-# Tally votes
-total = 0
-for t in tuple_log:
-    total += t[4]
+total = len(recorded_yes) - len(recorded_no)
 
 # Reply to submission
 if total > 0:
@@ -67,7 +73,12 @@ if total > 0:
 else:
     s.edit('no water')
 
-with open('/home/pi/comment_vote_log.txt', 'a+') as f:
-    f.write(str(tuple_log))
+with open('/home/pi/yes_votes.txt', 'a+') as f:
+    f.write(str(recorded_yes))
+    f.close()
+
+with open('/home/pi/yes_votes.txt', 'a+') as f:
+    f.write(str(recorded_no))
+    f.close
 
 
