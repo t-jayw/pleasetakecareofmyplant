@@ -88,4 +88,3 @@ catch it!
 
 Thanks for taking care of my plant!
 """
-body_edit = body_edit.format(now_formatted)
