@@ -17,7 +17,6 @@ sr = r.get_subreddit(c.subreddit)
 
 with open('/home/pi/pleasetakecareofmyplant/daily_thread.txt', 'r+') as f:
     thread = f.read()
-    print thread*10
     f.close()
 
 
@@ -56,7 +55,6 @@ recorded_no ={}
 for x in comments:
     score = get_comment_score(x)
     tuple_log = (s.id, x.name, x.author.name, x.body, score)
-    print str(tuple_log)
     if score == 1:
         d = recorded_yes
     elif score == -1:
@@ -76,11 +74,11 @@ if total > 0:
 else:
     s.edit('no water')
 
-with open('/home/pi/yes_votes.txt', 'a+') as f:
+with open('/home/pi/pleasetakecareofmyplant/yes_votes.txt', 'a+') as f:
     f.write(str(recorded_yes))
     f.close()
 
-with open('/home/pi/yes_votes.txt', 'a+') as f:
+with open('/home/pi/pleasetakecareofmyplant/no_votes.txt', 'a+') as f:
     f.write(str(recorded_no))
     f.close
 
