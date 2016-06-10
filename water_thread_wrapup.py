@@ -15,7 +15,7 @@ r = praw.Reddit(user_agent=c.user_agent)
 r.login(c.user_name, c.password)
 sr = r.get_subreddit(c.subreddit)
 
-with open('/home/pi/daily_thread.txt', 'r+') as f:
+with open('/home/pi/pleasetakecareofmyplant/daily_thread.txt', 'r+') as f:
     thread = f.read()
     f.close()
 
@@ -54,9 +54,9 @@ recorded_no ={}
 for x in comments:
     score = get_comment_score(x)
     tuple_log = [(s.id, x.name, x.author.name, x.body, score)]
-    if score = 1:
+    if score == 1:
         d = recorded_yes
-    elif score = -1:
+    elif score == -1:
         d = recorded_no
     else:
         continue
