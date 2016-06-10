@@ -67,12 +67,13 @@ for x in comments:
 
 total = len(recorded_yes) - len(recorded_no)
 
+wrapup = posts.body_edit.format(posts.now_formatted, len(recorded_yes), len(recorded_no))
 # Reply to submission
 if total > 0:
-    s.edit('water!')
+    s.edit(wrapup)
     g.on_off()
 else:
-    s.edit('no water')
+    s.edit(wrapup)
 
 with open('/home/pi/pleasetakecareofmyplant/yes_votes.txt', 'a+') as f:
     f.write(str(recorded_yes))
