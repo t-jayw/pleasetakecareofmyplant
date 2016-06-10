@@ -17,7 +17,9 @@ sr = r.get_subreddit(c.subreddit)
 
 with open('/home/pi/pleasetakecareofmyplant/daily_thread.txt', 'r+') as f:
     thread = f.read()
+    print thread*10
     f.close()
+
 
 s = r.get_submission(submission_id = thread)
 s.lock()
