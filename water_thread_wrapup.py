@@ -8,7 +8,7 @@ from datetime import datetime as dt
 
 import gpio_out as g
 import config as c
-import water_post_template as wpt
+import post_templates as posts
 
 # Set-up
 r = praw.Reddit(user_agent=c.user_agent)

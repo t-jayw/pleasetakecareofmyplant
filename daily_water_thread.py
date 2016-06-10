@@ -6,15 +6,15 @@ import praw
 from datetime import datetime as dt
 
 import config as c
-import water_post_template as wpt
+import post_templates as posts
 
 # Set-up
 r = praw.Reddit(user_agent=c.user_agent)
 r.login(c.user_name, c.password)
 sr = r.get_subreddit(c.subreddit)
 
-post_body = wpt.body
-post_title = wpt.title
+post_body = posts.body
+post_title = posts.title
 
 s = sr.submit(post_title, text=post_body)
 

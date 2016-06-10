@@ -35,6 +35,7 @@ url = url.format(ZIP=config.zipcode, APIKEY=api)
 r = requests.get(url)
 description = r.json()['weather'][0]['main']
 
+# Daily Water Thread
 title = """
 Today is {0}, {1} {2}. Do you want to water the plant today? 
 """
@@ -67,3 +68,24 @@ pump and water the plant. If not, we will check in again tomorrow!
 
 body = body.format(now_formatted, description, end_time_formatted)
 
+# Wrapup
+body_edit = """
+Hello again, it is **{0}** and I've just finished counting your votes.
+
+
+Here are the results:
+
+
+Yes | No
+---|--
+{1} | {2}
+
+
+If `Yes` votes are in the majority, the pump will be switched on in 10 minutes.
+The pump will only run for 20 seconds, dispensing ~150ml of water. Try to 
+catch it!
+
+
+Thanks for taking care of my plant!
+"""
+body_edit = body_edit.format(now_formatted)
