@@ -8,6 +8,9 @@ from datetime import datetime as dt
 import config as c
 import post_templates as posts
 
+REDDIT_USERNAME = 'takecareofmyplant'
+REDDIT_PASSWORD = 'hunter2'
+
 # Set-up
 r = praw.Reddit(user_agent=c.user_agent)
 r.login(c.user_name, c.password)
