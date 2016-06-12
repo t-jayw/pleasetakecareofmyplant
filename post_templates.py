@@ -84,8 +84,8 @@ Yes | No
 If `Yes` votes are in the majority, the pump will be switched on in 10 minutes.
 
 
-The pump will only run for 20 seconds, dispensing ~225ml of water. Try to 
-catch it!
+The pump will only run for 25 seconds, dispensing ~275ml of water. Try to 
+catch it on the [PLANT CAM](http://www.pleasetakecareofmyplant.com)!
 
 
 Thanks for taking care of my plant!

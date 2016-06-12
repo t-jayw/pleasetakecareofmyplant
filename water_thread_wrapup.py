@@ -73,15 +73,11 @@ wrapup = posts.body_edit.format(posts.now_formatted, len(recorded_yes), len(reco
 
 wrapup = self_text + "\n **** \n" + wrapup
 
-print total
-print wrapup
-
-
 # Reply to submission
 if total > 0:
     s.edit(wrapup)
     time.sleep(600)
-    g.on_off(20) 
+    g.on_off(25) 
 else:
     s.edit(wrapup)
 
