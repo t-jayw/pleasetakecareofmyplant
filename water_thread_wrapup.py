@@ -68,7 +68,15 @@ for x in comments:
 
 total = len(recorded_yes) - len(recorded_no)
 
+self_text = s.selftext
 wrapup = posts.body_edit.format(posts.now_formatted, len(recorded_yes), len(recorded_no))
+
+wrapup = self_text + "\n **** \n" + wrapup
+
+print total
+print wrapup
+
+
 # Reply to submission
 if total > 0:
     s.edit(wrapup)

@@ -84,7 +84,7 @@ Yes | No
 If `Yes` votes are in the majority, the pump will be switched on in 10 minutes.
 
 
-The pump will only run for 20 seconds, dispensing ~150ml of water. Try to 
+The pump will only run for 20 seconds, dispensing ~225ml of water. Try to 
 catch it!
 
 
