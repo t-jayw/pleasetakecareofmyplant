@@ -85,10 +85,7 @@ If `Yes` votes are in the majority, the following will take place:
 
 
 * The pump will be switched on in 10 minutes for 15 seconds, dispensing ~150ml of water
-* In 14 hours, the pump will be switched on again for an 10 more seconds, dispensing ~100ml of water
-
-
-It is done this way to excess water draining out, and to keep the soil moist!
+* In 14 hours, the pump will be switched on again for another 10  seconds, dispensing ~100ml of water
 
 
 Try to catch it on the [PLANT CAM](http://www.pleasetakecareofmyplant.com)! 
