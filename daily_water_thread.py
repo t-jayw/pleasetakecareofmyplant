@@ -25,5 +25,11 @@ s.sticky()
 
 with open('/home/pi/pleasetakecareofmyplant/daily_thread.txt', 'w') as f:
     f.write(s.id)
-    
+    f.close()
+
+with open('/home/pi/pleasetakecareofmyplant/daily_thread.txt', 'r+') as f:
+    x = f.read()
+
+if x = '1':
+    g.on_off(10)    
 

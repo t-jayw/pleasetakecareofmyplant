@@ -73,13 +73,7 @@ wrapup = posts.body_edit.format(posts.now_formatted, len(recorded_yes), len(reco
 
 wrapup = self_text + "\n **** \n" + wrapup
 
-# Reply to submission
-if total > 0:
-    s.edit(wrapup)
-    time.sleep(600)
-    g.on_off(25) 
-else:
-    s.edit(wrapup)
+s.edit(wrapup)
 
 with open('/home/pi/pleasetakecareofmyplant/yes_votes.txt', 'a+') as f:
     f.write(str(recorded_yes))
@@ -87,6 +81,16 @@ with open('/home/pi/pleasetakecareofmyplant/yes_votes.txt', 'a+') as f:
 
 with open('/home/pi/pleasetakecareofmyplant/no_votes.txt', 'a+') as f:
     f.write(str(recorded_no))
-    f.close
+    f.close()
 
+if total > 0:
+    time.sleep(600)
+    g.on_off(15)
+    with open('/home/pi/pleasetakecareofmyplant/topup.txt', 'w') as f:
+      f.write('1')
+      f.close()
+else:
+    with open('/home/pi/pleasetakecareofmyplant/topup.txt', 'w') as f:
+      f.write('0') 
+      f.close()
 
