@@ -25,7 +25,7 @@ def ord(n):
 ord_date = ord(int(now_pst.strftime('%-d')))
 
 now_formatted = now_pst.strftime(date_format)
-end_time = now_pst + datetime.timedelta(0, 10*3600)
+end_time = now_pst + datetime.timedelta(0, 18*3600)
 end_time_formatted = end_time.strftime(date_format)
 
 # Weather update
@@ -55,7 +55,7 @@ this post. If you think that plant should not be watered today, please comment
 `no` below. 
 
 
-When this post is 10 hours old, at **{2}**, this post will be locked.
+When this post is 18 hours old, at **{2}**, this post will be locked.
 u/takecareofmyplant will tally all the `yes` or `no` votes in top level comments
 on this thread. 
 

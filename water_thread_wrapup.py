@@ -27,6 +27,8 @@ s.unsticky()
 
 # pull ALL top-level comments and calculate score
 # Takes FOREVVVVEEEERRR
+
+print "more comments starting"
 s.replace_more_comments(limit = None, threshold = 0)
 comments = s.comments
 
@@ -90,7 +92,7 @@ if total > 0:
       f.write('1')
       f.close()
       time.sleep(600)
-      g.on_off(15)
+      g.on_off(1)
 else:
     with open('/home/pi/pleasetakecareofmyplant/topup.txt', 'w') as f:
       f.write('0') 
