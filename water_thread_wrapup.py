@@ -25,7 +25,9 @@ s = r.get_submission(submission_id = thread)
 s.lock()
 s.unsticky()
 
-# pull top-level comments and calculate score
+# pull ALL top-level comments and calculate score
+# Takes FOREVVVVEEEERRR
+s.replace_more_comments(limit = None, threshold = 0)
 comments = s.comments
 
 def get_comment_score(comment):
