@@ -71,7 +71,7 @@ pump and water the plant. If not, we will check in again tomorrow!
 
 ****
 
->>Watering Decision Past 7 Days
+>>Watering Decisions Past 7 Days
 
 {3}
 """
