@@ -1,6 +1,6 @@
 import config as c
 
-with open("history.txt") as f:
+with open("/home/pi/pleasetakecareofmyplant/history.txt") as f:
   h = f.readlines()
 
 h = [x.strip().split(',') for x in h]
