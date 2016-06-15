@@ -3,7 +3,7 @@
 import RPi.GPIO as GPIO
 import time
 
-OUTPUT_PIN = 23
+OUTPUT_PIN = 11
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(OUTPUT_PIN, GPIO.OUT)

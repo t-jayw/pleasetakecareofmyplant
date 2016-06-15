@@ -8,6 +8,8 @@ import pytz
 from datetime import datetime as dt
 from pytz import timezone
 
+import history_format as hf
+
 # Date time set up
 date_format = '%H:%M:%S PST'
 title_format = '%Y-%m-%d'
@@ -25,7 +27,7 @@ def ord(n):
 ord_date = ord(int(now_pst.strftime('%-d')))
 
 now_formatted = now_pst.strftime(date_format)
-end_time = now_pst + datetime.timedelta(0, 18*3600)
+end_time = now_pst + datetime.timedelta(0, 20*3600)
 end_time_formatted = end_time.strftime(date_format)
 
 # Weather update
@@ -44,6 +46,8 @@ title = title.format(now_pst.strftime('%A'),
                      now_pst.strftime('%B'), 
                      ord_date) 
                     
+history = hf.history_table
+
 body = """
 Hello, and thanks for taking care of my plant! 
 
@@ -55,7 +59,7 @@ this post. If you think that plant should not be watered today, please comment
 `no` below. 
 
 
-When this post is 18 hours old, at **{2}**, this post will be locked.
+When this post is 20 hours old, at **{2}**, this post will be locked.
 u/takecareofmyplant will tally all the `yes` or `no` votes in top level comments
 on this thread. 
 
@@ -64,9 +68,15 @@ pump and water the plant. If not, we will check in again tomorrow!
 
 
 **To help take care of my plant, please vote below!**
+
+****
+
+>>Watering Decision Past 7 Days
+
+{3}
 """
 
-body = body.format(now_formatted, description, end_time_formatted)
+body = body.format(now_formatted, description, end_time_formatted, history)
 
 # Wrapup
 body_edit = """

@@ -31,6 +31,7 @@ with open('/home/pi/pleasetakecareofmyplant/daily_thread.txt', 'w') as f:
 
 with open('/home/pi/pleasetakecareofmyplant/topup.txt', 'r+') as f:
     x = f.read()
+    print x
     if x == '1':
       g.on_off(10)    
 
