@@ -7,19 +7,19 @@ import time
 
 from datetime import datetime as dt
 
-import gpio_out as g
+#import gpio_out as g
 import config as c
 import post_templates as posts
 
 # Set-up
-r = praw.Reddit(user_agent=c.user_agent)
-r.login(c.user_name, c.password)
-sr = r.get_subreddit(c.subreddit)
+r = c.getReddit()
+sr = c.getSubReddit(r)
 
-with open('/home/pi/pleasetakecareofmyplant/daily_thread.txt', 'r+') as f:
+path = c.pathPrefix()
+
+with open(path+'daily_thread.txt', 'r+') as f:
     thread = f.read()
     f.close()
-
 
 s = r.get_submission(submission_id = thread)
 s.lock()
@@ -79,22 +79,22 @@ wrapup = self_text + "\n **** \n" + wrapup
 
 s.edit(wrapup)
 
-with open('/home/pi/pleasetakecareofmyplant/yes_votes.txt', 'a+') as f:
+with open(path+'yes_votes.txt', 'a+') as f:
     f.write(str(recorded_yes))
     f.close()
 
-with open('/home/pi/pleasetakecareofmyplant/no_votes.txt', 'a+') as f:
+with open(path+'no_votes.txt', 'a+') as f:
     f.write(str(recorded_no))
     f.close()
 
 if total > 0:
-    with open('/home/pi/pleasetakecareofmyplant/topup.txt', 'w') as f:
+    with open(path+'topup.txt', 'w') as f:
       f.write('1')
       f.close()
-      time.sleep(600)
-      g.on_off(15)
+      #time.sleep(600)
+      #g.on_off(15)
 else:
-    with open('/home/pi/pleasetakecareofmyplant/topup.txt', 'w') as f:
+    with open(path+'topup.txt', 'w') as f:
       f.write('0') 
       f.close()
 

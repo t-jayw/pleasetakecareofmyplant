@@ -1,6 +1,8 @@
 import config as c
 
-with open("/home/pi/pleasetakecareofmyplant/history.txt") as f:
+path = c.pathPrefix()
+
+with open(path + "/history.txt") as f:
   h = f.readlines()
 
 h = [x.strip().split(',') for x in h]

@@ -1,6 +1,4 @@
 ### This is to generate the text of daily water-decision post
-
-import config 
 import requests
 import datetime
 import pytz
@@ -8,6 +6,8 @@ import pytz
 from datetime import datetime as dt
 from pytz import timezone
 
+import config as c
+import secret
 import history_format as hf
 
 # Date time set up
@@ -31,9 +31,8 @@ end_time = now_pst + datetime.timedelta(0, 20*3600)
 end_time_formatted = end_time.strftime(date_format)
 
 # Weather update
-api = config.weather_api
 url = 'http://api.openweathermap.org/data/2.5/weather?zip={ZIP},us&APPID={APIKEY}'
-url = url.format(ZIP=config.zipcode, APIKEY=api)
+url = url.format(ZIP=secret.zipcode, APIKEY=secret.weather_api)
 r = requests.get(url)
 description = r.json()['weather'][0]['main']
 
