@@ -9,11 +9,12 @@ import re
 
 import praw
 
+import post_templates as posts
 import config as c
 
 # Setup
 r = c.getReddit()
-sr = c.getSubReddit(r)
+sr = c.getSubReddit(r, False)
 
 path = c.pathPrefix()
 
@@ -69,7 +70,7 @@ def workNewComments(submission=s, record=processed):
         if score == 0:
             continue
         tuple_log = (s.id, x.name, x.author.name, x.body, score)
-        reply_to_vote(x, score)
+        #reply_to_vote(x, score)
         record = [tuple_log] + record
     print(record)
     return record
@@ -88,10 +89,35 @@ def getScores(record = processed):
 
 yes, no = getScores()
 
-print str(yes) + "\n" + str(no)
+yes_pct = yes*100/(yes + no)
+no_pct = 100 - yes_pct
+
+yes_bar = "`Yes`: `"+"]"*yes_pct+"` (%d)"%(yes)
+no_bar = "`No`:  `"+"]"*no_pct+"` (%d)"%(no)
+
+print str(yes_bar) + "\n" + str(no_bar)
+
+continuous_score_body = posts.continuous_vote_display%(yes_bar, no_bar)
+
+try:
+    with open('cont_comment_id.txt', 'r') as f:
+        update_comment = f.read()
+except:
+    update_comment = False
+
+if not update_comment:
+    update = s.add_comment(continuous_score_body)
+else:
+    update = r.get_info(thing_id = update_comment)
+    update.edit(continuous_score_body)
+    
+update.distinguish(sticky=True)
 
 with open('cont_comment_log.txt', 'w') as f:
     pickle.dump(processed, f)
+
+with open('cont_comment_id.txt', 'w') as f:
+    f.write(update.name)
 
     
 
