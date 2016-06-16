@@ -14,7 +14,7 @@ def getReddit():
     r.login(user_name, password)
     return r
 
-def getSubReddit(Reddit, test=True):
+def getSubReddit(Reddit, test=False):
     sub = test_sub if test else subreddit
     sr = Reddit.get_subreddit(sub)
     return sr
