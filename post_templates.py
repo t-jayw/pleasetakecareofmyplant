@@ -105,17 +105,9 @@ Thanks for taking care of my plant!
 
 continuous_vote_display = """
 
-****
-
-**Current Voting as of {0}
-
-This will update every 5 minutes
-
 %s
 
 %s
 
-
-****
 """.format(now_formatted)
 
