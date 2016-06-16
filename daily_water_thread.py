@@ -4,7 +4,7 @@ import praw
 
 import config as c
 import post_templates as posts
-#import gpio_out as g
+import gpio_out as g
 
 REDDIT_USERNAME = 'takecareofmyplant'
 REDDIT_PASSWORD = 'hunter2'
@@ -29,7 +29,7 @@ with open(path_prefix+'daily_thread.txt', 'w') as f:
 
 with open(path_prefix+'topup.txt', 'r+') as f:
     x = f.read()
-    #if x == '1':
-      #g.on_off(10)
+    if x == '1':
+      g.on_off(10)
     
 

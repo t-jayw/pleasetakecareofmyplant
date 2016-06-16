@@ -7,7 +7,7 @@ import time
 
 from datetime import datetime as dt
 
-#import gpio_out as g
+import gpio_out as g
 import config as c
 import post_templates as posts
 
@@ -91,8 +91,8 @@ if total > 0:
     with open(path+'topup.txt', 'w') as f:
       f.write('1')
       f.close()
-      #time.sleep(600)
-      #g.on_off(15)
+      time.sleep(600)
+      g.on_off(15)
 else:
     with open(path+'topup.txt', 'w') as f:
       f.write('0') 
