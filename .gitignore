@@ -1,5 +1,4 @@
 *.pyc
 .gitignore
-*config*
 *.txt
 *secret*
