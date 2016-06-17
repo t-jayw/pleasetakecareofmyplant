@@ -54,7 +54,7 @@ s = r.get_submission(submission_id = thread)
 
 def workNewComments(submission=s, record=processed):
     done = [x[1] for x in record]
-    print(str(done))
+    #print(str(done))
     voters = [x[2]+str(x[4]) for x in record]
     for x in s.comments:
         if not type(x) is praw.objects.Comment:
@@ -63,16 +63,18 @@ def workNewComments(submission=s, record=processed):
         if x.name in done:
             print('id')
             break
-        if x.author.name in voters:
+        score = get_comment_score(x)
+        if x.author.name+str(score) in voters:
             print('name')
             continue
-        score = get_comment_score(x)
         if score == 0:
             continue
         tuple_log = (s.id, x.name, x.author.name, x.body, score)
         #reply_to_vote(x, score)
         record = [tuple_log] + record
-    print(record)
+        voters = [x.author.name+str(score)] + voters
+    #print(record)
+    print voters[:200]
     return record
 
 processed = workNewComments()
@@ -92,13 +94,12 @@ yes, no = getScores()
 yes_pct = yes*100/(yes + no)
 no_pct = 100 - yes_pct
 
-yes_bar = "`Yes`: `"+"]"*(yes_pct/2)+"` (%d)"%(yes)
-no_bar = "`No`:  `"+"]"*(no_pct/2)+"` (%d)"%(no)
+yes_bar = "`Y`: `"+"]"*(yes_pct/2)+"` (%d)"%(yes)
+no_bar = "`N `:     `"+"]"*(no_pct/2)+"` (%d)"%(no)
 
-print str(yes_bar) + "\n" + str(no_bar)
+print yes, no
 
 continuous_score_body = posts.continuous_vote_display%(yes_bar, no_bar)
-
 try:
     with open('cont_comment_id.txt', 'r') as f:
         update_comment = f.read()
@@ -118,14 +119,3 @@ with open('cont_comment_log.txt', 'w') as f:
 
 with open('cont_comment_id.txt', 'w') as f:
     f.write(update.name)
-
-    
-
-
-    
-
-
-
-
-
-
