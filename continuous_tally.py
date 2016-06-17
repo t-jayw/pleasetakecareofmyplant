@@ -92,8 +92,8 @@ yes, no = getScores()
 yes_pct = yes*100/(yes + no)
 no_pct = 100 - yes_pct
 
-yes_bar = "`Yes`: `"+"]"*yes_pct+"` (%d)"%(yes)
-no_bar = "`No`:  `"+"]"*no_pct+"` (%d)"%(no)
+yes_bar = "`Yes`: `"+"]"*(yes_pct/2)+"` (%d)"%(yes)
+no_bar = "`No`:  `"+"]"*(no_pct/2)+"` (%d)"%(no)
 
 print str(yes_bar) + "\n" + str(no_bar)
 
