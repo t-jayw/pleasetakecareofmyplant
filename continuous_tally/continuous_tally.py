@@ -6,6 +6,7 @@
 import pickle
 import json
 import re
+import time
 
 import praw
 
@@ -18,6 +19,34 @@ sr = c.getSubReddit(r, False)
 
 path = c.pathPrefix()
 
+## Get necessary files
+
+# Comment log, in case one exists (vestigial file)
+
+try:
+    with open(path+'continuous_tally/cont_comment_log.txt', 'r+') as f:
+        try:
+            processed = pickle.load(f) 
+        except EOFError:
+            processed = []
+        f.close()
+except:
+    processed = []
+
+# Similar to above, if there is already a comment, it's written here
+try:
+    with open('cont_comment_id.txt', 'r') as f:
+        update_comment = f.read()
+        f.close()
+except:
+    update_comment = False
+
+# Get the submission -- written by Daily Water thread script
+with open(path+'daily_thread.txt', 'r+') as f:
+    thread = f.read()
+    f.close()
+
+## Functions
 def get_comment_score(x):
     yes = re.search(r'\byes\b', x.body, re.IGNORECASE)
     no = re.search(r'\bno\b', x.body, re.IGNORECASE)
@@ -39,23 +68,10 @@ def reply_to_vote(comment, score=None):
     elif score == -1:
         comment.reply("2")
 
-with open(path+'cont_comment_log.txt', 'r+') as f:
-    try:
-        processed = pickle.load(f) 
-    except EOFError:
-        processed = []
-
-# Get the submission
-with open(path+'daily_thread.txt', 'r+') as f:
-    thread = f.read()
-    f.close()
-
-s = r.get_submission(submission_id = thread)
-
-def workNewComments(submission=s, record=processed):
+def workNewComments(submission, record):
     done = [x[1] for x in record]
-    #print(str(done))
     voters = [x[2]+str(x[4]) for x in record]
+    
     for x in s.comments:
         if not type(x) is praw.objects.Comment:
             s.get_more_comments(limit=10)
@@ -73,13 +89,9 @@ def workNewComments(submission=s, record=processed):
         #reply_to_vote(x, score)
         record = [tuple_log] + record
         voters = [x.author.name+str(score)] + voters
-    #print(record)
-    print voters[:200]
     return record
 
-processed = workNewComments()
-
-def getScores(record = processed):
+def getScores(record=processed):
     y = 0
     n = 0
     for x in processed:
@@ -89,33 +101,38 @@ def getScores(record = processed):
             n += 1
     return y, n
 
-yes, no = getScores()
+def makeBars(yes, no):
+    yes_pct = yes*100/(yes + no)
+    no_pct = 100 - yes_pct
 
-yes_pct = yes*100/(yes + no)
-no_pct = 100 - yes_pct
+    yes_bar = "`Y`: `"+"|"*(yes_pct/2)+"` (%d)"%(yes)
+    no_bar = "`N `:     `"+"|"*(no_pct/2)+"` (%d)"%(no)
+    return yes_bar, no_bar
 
-yes_bar = "`Y`: `"+"|"*(yes_pct/2)+"` (%d)"%(yes)
-no_bar = "`N `:     `"+"|"*(no_pct/2)+"` (%d)"%(no)
+# WHO RUN IT
+s = r.get_submission(submission_id = thread)
 
-print yes, no
+it = 0
 
-continuous_score_body = posts.continuous_vote_display%(yes_bar, no_bar)
-try:
-    with open('cont_comment_id.txt', 'r') as f:
-        update_comment = f.read()
-except:
-    update_comment = False
-
-if not update_comment:
-    update = s.add_comment(continuous_score_body)
-else:
-    update = r.get_info(thing_id = update_comment)
-    update.edit(continuous_score_body)
+while it <= 240:
+    processed = workNewComments(submission=s,record=processed)
+    yes, no = getScores()
+    yes_bar, no_bar = makeBars(yes, no)
     
-update.distinguish(sticky=True)
+    continuous_score_body = posts.continuous_vote_display%(yes_bar, no_bar)
+
+    if not update_comment:
+        update = s.add_comment(continuous_score_body)
+    else:
+        update = r.get_info(thing_id = update_comment)
+        update.edit(continuous_score_body)
+    
+    update.distinguish(sticky=True)
+    time.sleep(300)
+    it += 1
 
 with open('cont_comment_log.txt', 'w') as f:
-    pickle.dump(processed, f)
+        pickle.dump(processed, f)
 
 with open('cont_comment_id.txt', 'w') as f:
     f.write(update.name)
