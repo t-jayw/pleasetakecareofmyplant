@@ -31,5 +31,13 @@ with open(path_prefix+'topup.txt', 'r+') as f:
     x = f.read()
     if x == '1':
       g.on_off(10)
+
+# Reset continuous comment files
+with open(path_prefix+'/continuous_tally/cont_comment_log.txt', 'w') as f:
+    f.write('')
+    f.close()
     
+with open(path_prefix+'/continuous_tally/cont_comment_id.txt', 'w') as f:
+    f.write('')
+    f.close()
 

@@ -98,3 +98,10 @@ else:
       f.write('0') 
       f.close()
 
+outcome = 'yes' if total > 1 else 'no'
+dow = posts.now_pst.strftime('%A')
+history_record = ','.join([dow, outcome, s.id])
+
+with open(path+'history.txt', 'a+') as f:
+    new_row = "\n"+str(history_record)
+    f.close()
