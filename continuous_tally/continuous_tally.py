@@ -1,7 +1,4 @@
-# Currently, in the workNewComments function, it handles comment loading well
-# It will load comments sequentially and breaks when at where it left off
-# Does not handle 1/vote per person due to 'voter' list not updating with 
-#   each iteration of the loop through s.comments
+
 
 import pickle
 import json
@@ -20,9 +17,7 @@ sr = c.getSubReddit(r, False)
 path = c.pathPrefix()
 
 ## Get necessary files
-
 # Comment log, in case one exists (vestigial file)
-
 try:
     with open(path+'continuous_tally/cont_comment_log.txt', 'r+') as f:
         try:
