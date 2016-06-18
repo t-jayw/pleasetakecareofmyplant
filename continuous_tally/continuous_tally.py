@@ -136,3 +136,4 @@ with open('cont_comment_log.txt', 'w') as f:
 
 with open('cont_comment_id.txt', 'w') as f:
     f.write(update.name)
+
