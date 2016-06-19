@@ -114,7 +114,7 @@ s = r.get_submission(submission_id = thread)
 
 it = 0
 
-while it <= 240:
+while locked = False:
     s = r.get_submission(submission_id = thread)
     processed = workNewComments(submission=s,record=processed)
     yes, no = getScores()
@@ -131,7 +131,7 @@ while it <= 240:
     
     update.distinguish(sticky=True)
     time.sleep(300)
-    it += 1
+    locked = s.locked
 
 with open('cont_comment_log.txt', 'w') as f:
         pickle.dump(processed, f)
