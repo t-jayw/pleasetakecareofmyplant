@@ -104,4 +104,5 @@ history_record = ','.join([dow, outcome, s.id])
 
 with open(path+'history.txt', 'a+') as f:
     new_row = "\n"+str(history_record)
+    f.write(new_row)    
     f.close()
