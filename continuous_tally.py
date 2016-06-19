@@ -19,6 +19,9 @@ sr = c.getSubReddit(r, False)
 
 path = c.pathPrefix()
 
+if c.checkKillSwitch() == 1:
+    sys.exit()
+
 ## Get necessary files
 
 # Comment log, in case one exists (vestigial file)

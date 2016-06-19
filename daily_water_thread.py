@@ -1,6 +1,7 @@
 # Make a thread in the subreddit to get input on water/don't water 
 import os
 import praw
+import sys
 
 import config as c
 import post_templates as posts
@@ -15,6 +16,9 @@ sr = c.getSubReddit(r)
 
 post_body = posts.body
 post_title = posts.title
+
+if c.checkKillSwitch() == 1:
+    sys.exit()
 
 # Post Thread
 s = sr.submit(post_title, text=post_body)

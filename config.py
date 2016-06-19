@@ -1,5 +1,6 @@
 import os
 from getpass import getuser
+import requests
 
 import praw
 
@@ -27,8 +28,12 @@ def pathPrefix():
     path = tyler if user == 'tyler_wood' else pi
     return path
 
-# Time 
-
+# Kill Switch
+def checkKillSwitch():
+    url = "http://www.pleasetakecareofmyplant.com/killswitch.html"
+    r = requests.get(url)
+    check = int(r.content)
+    return check
 
 
 

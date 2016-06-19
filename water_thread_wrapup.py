@@ -17,6 +17,9 @@ sr = c.getSubReddit(r)
 
 path = c.pathPrefix()
 
+if c.checkKillSwitch() == 1:
+    sys.exit()
+
 with open(path+'daily_thread.txt', 'r+') as f:
     thread = f.read()
     f.close()
