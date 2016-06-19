@@ -114,7 +114,7 @@ s = r.get_submission(submission_id = thread)
 
 it = 0
 
-while locked = False:
+while locked == False:
     s = r.get_submission(submission_id = thread)
     processed = workNewComments(submission=s,record=processed)
     yes, no = getScores()
