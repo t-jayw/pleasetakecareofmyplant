@@ -135,7 +135,7 @@ while locked == False:
         update.edit(continuous_score_body)
     
     update.distinguish(sticky=True)
-    time.sleep(300)
+    time.sleep(30)
     locked = s.locked
 
 with open('cont_comment_log.txt', 'w') as f:
