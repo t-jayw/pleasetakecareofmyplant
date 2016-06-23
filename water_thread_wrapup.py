@@ -106,6 +106,6 @@ dow = posts.now_pst.strftime('%A')
 history_record = ','.join([dow, outcome, s.id])
 
 with open(path+'history.txt', 'a+') as f:
-    new_row = "\n"+str(history_record)
+    new_row = str(history_record)
     f.write(new_row)    
     f.close()

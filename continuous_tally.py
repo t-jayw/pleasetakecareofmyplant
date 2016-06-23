@@ -34,6 +34,8 @@ try:
 except:
     processed = []
 
+print str(processed)
+
 # Similar to above, if there is already a comment, it's written here
 try:
     with open('cont_comment_id.txt', 'r') as f:
@@ -112,13 +114,15 @@ def makeBars(yes, no):
 
 # WHO RUN IT
 s = r.get_submission(submission_id = thread)
+print s.id
 
-s = r.get_submission(submission_id = thread)
 processed = workNewComments(submission=s,record=processed)
 yes, no = getScores()
 yes_bar, no_bar = makeBars(yes, no)
 
 continuous_score_body = posts.continuous_vote_display%(yes_bar, no_bar)
+
+print continuous_score_body
 
 if not update_comment:
   update = s.add_comment(continuous_score_body)
