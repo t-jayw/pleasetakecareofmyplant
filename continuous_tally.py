@@ -19,8 +19,6 @@ sr = c.getSubReddit(r, False)
 
 path = c.pathPrefix()
 
-if c.checkKillSwitch() == 1:
-    sys.exit()
 
 ## Get necessary files
 
@@ -115,30 +113,23 @@ def makeBars(yes, no):
 # WHO RUN IT
 s = r.get_submission(submission_id = thread)
 
-it = 0
+s = r.get_submission(submission_id = thread)
+processed = workNewComments(submission=s,record=processed)
+yes, no = getScores()
+yes_bar, no_bar = makeBars(yes, no)
 
-locked = False
+continuous_score_body = posts.continuous_vote_display%(yes_bar, no_bar)
 
-while locked == False:
-    s = r.get_submission(submission_id = thread)
-    processed = workNewComments(submission=s,record=processed)
-    yes, no = getScores()
-    yes_bar, no_bar = makeBars(yes, no)
-    
-    continuous_score_body = posts.continuous_vote_display%(yes_bar, no_bar)
+if not update_comment:
+  update = s.add_comment(continuous_score_body)
+  update_comment = update.name
+else:
+  update = r.get_info(thing_id = update_comment)
+  update.edit(continuous_score_body)
 
-    if not update_comment:
-        update = s.add_comment(continuous_score_body)
-	update_comment = update.name
-    else:
-        update = r.get_info(thing_id = update_comment)
-        update.edit(continuous_score_body)
-    
-    update.distinguish(sticky=True)
-    time.sleep(30)
-    locked = s.locked
+update.distinguish(sticky=True)
 
-with open('cont_comment_log.txt', 'w') as f:
+with open(path+'continuous_tally/cont_comment_log.txt', 'w') as f:
         pickle.dump(processed, f)
 
 with open('cont_comment_id.txt', 'w') as f:

@@ -109,7 +109,7 @@ s = r.get_submission(submission_id = thread)
 
 it = 0
 
-while it <= 240:
+while it <= 1:
     processed = workNewComments(submission=s,record=processed)
     yes, no = getScores()
     yes_bar, no_bar = makeBars(yes, no)
