@@ -73,6 +73,12 @@ pump and water the plant. If not, we will check in again tomorrow!
 >>Watering Decisions Past 7 Days
 
 {3}
+
+****
+
+Try to catch it on the [PLANT CAM](http://www.pleasetakecareofmyplant.com)! 
+
+
 """
 
 body = body.format(now_formatted, description, end_time_formatted, history)

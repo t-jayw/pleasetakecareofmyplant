@@ -95,7 +95,7 @@ if total > 0:
       f.write('1')
       f.close()
       time.sleep(600)
-      g.on_off(15)
+      g.on_off(20)
 else:
     with open(path+'topup.txt', 'w') as f:
       f.write('0') 

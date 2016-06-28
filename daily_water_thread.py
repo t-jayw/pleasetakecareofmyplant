@@ -34,7 +34,7 @@ with open(path_prefix+'daily_thread.txt', 'w') as f:
 with open(path_prefix+'topup.txt', 'r+') as f:
     x = f.read()
     if x == '1':
-      g.on_off(10)
+      g.on_off(15)
 
 # Reset continuous comment files
 with open(path_prefix+'/continuous_tally/cont_comment_log.txt', 'w') as f:

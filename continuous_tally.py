@@ -38,7 +38,7 @@ print str(processed)
 
 # Similar to above, if there is already a comment, it's written here
 try:
-    with open(path+'cont_comment_id.txt', 'r') as f:
+    with open(path+'continuous_tally/cont_comment_id.txt', 'r') as f:
         update_comment = f.read()
         f.close()
 except:
@@ -138,6 +138,6 @@ update.distinguish(sticky=True)
 with open(path+'continuous_tally/cont_comment_log.txt', 'w') as f:
         pickle.dump(processed, f)
 
-with open(path+'cont_comment_id.txt', 'w') as f:
+with open(path+'continuous_tally/cont_comment_id.txt', 'w') as f:
     f.write(update.name)
 
