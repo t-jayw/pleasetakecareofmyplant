@@ -76,8 +76,7 @@ pump and water the plant. If not, we will check in again tomorrow!
 
 ****
 
-Try to catch it on the [PLANT CAM](http://www.pleasetakecareofmyplant.com)! 
-
+Check out the [PLANT CAM](http://www.pleasetakecareofmyplant.com) to help guide your decision! 
 
 """
 
