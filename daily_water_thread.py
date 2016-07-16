@@ -45,3 +45,4 @@ with open(path_prefix+'/continuous_tally/cont_comment_id.txt', 'w') as f:
     f.write('')
     f.close()
 
+
