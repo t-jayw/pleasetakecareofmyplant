@@ -36,8 +36,8 @@ s.replace_more_comments(limit = None, threshold = 0)
 comments = s.comments
 
 def get_comment_score(comment):
-    yes = re.search(r'\byes\b', x.body, re.IGNORECASE)
-    no = re.search(r'\bno\b', x.body, re.IGNORECASE)
+    yes = re.search(r'\byes\b', x.body, re.IGNORECASE) or re.search(r'\baye\b', x.body, re.IGNORECASE)
+    no = re.search(r'\bno\b', x.body, re.IGNORECASE) or re.search(r'\bnot on your nelly\b', x.body, re.IGNORECASE)
     if yes and no:
         return 0
     elif yes: 
