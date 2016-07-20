@@ -16,9 +16,11 @@ r = c.getReddit()
 with open(path+'history.txt', 'r+') as f:
     x = f.readlines()
 
-last_seven = x[-7:-3]
+last_seven = x[-7:]
 
 last_seven = [x.split(',')[2].strip() for x in last_seven]
+
+print(last_seven)
 
 def getResponders(thread):
     s = r.get_submission(submission_id = thread)
@@ -27,7 +29,11 @@ def getResponders(thread):
 
     name_list = []
     for x in comments:
-        name_list.append( x.author.name)
+       try: 
+            name_list.append( x.author.name)
+            print x.author.name
+       except:
+            continue
     return set(name_list)
 
 name_list = []
