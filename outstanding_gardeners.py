@@ -31,7 +31,6 @@ def getResponders(thread):
     for x in comments:
        try: 
             name_list.append( x.author.name)
-            print x.author.name
        except:
             continue
     return set(name_list)
@@ -51,4 +50,4 @@ for x in set(name_list):
 print outstanding
 
 for x in outstanding:
-    r.get_subreddit('takecareofmyplant').set_flair(x, '', 'test')
+    r.get_subreddit('takecareofmyplant').set_flair(x, 'Outstanding Gardener', '')
