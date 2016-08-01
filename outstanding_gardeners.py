@@ -49,3 +49,6 @@ for x in set(name_list):
         outstanding.append(x)
 
 print outstanding
+
+for x in outstanding:
+    r.get_subreddit('takecareofmyplant').set_flair(x, '', 'test')
