@@ -30,14 +30,14 @@ print('-' * 57)
 
 output = ""
 # Main program loop.
+values = []
 for x in range(0,10):    
   # Read all the ADC channel values in a list.
-    values = [mcp.read_adc(0)]
+    read = mcp.read_adc(0)
     # Print the ADC values.
-    foo = values
-    output += foo 
+    values[x] = foo 
     time.sleep(0.5)
 
 url = 'http://www.pleasetakecareofmyplant.com/datatest.php'
-payload = {'foo':output}
+payload = {'foo':values}
 r = requests.post(url, data=payload)
