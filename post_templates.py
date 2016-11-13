@@ -78,6 +78,7 @@ pump and water the plant. If not, we will check in again tomorrow!
 
 Check out the [PLANT CAM](http://www.pleasetakecareofmyplant.com) to help guide your decision! 
 
+Check out the [SOIL MOISTURE](http://www.pleasetakecareofmyplant.com/graph.html)!
 """
 
 body = body.format(now_formatted, description, end_time_formatted, history)
