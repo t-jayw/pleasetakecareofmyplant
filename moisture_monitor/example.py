@@ -32,12 +32,9 @@ output = ""
 # Main program loop.
 for x in range(0,10):    
   # Read all the ADC channel values in a list.
-    values = [0]*8
-    for i in range(8):
-        # The read_adc function will get the value of the specified channel (0-7).
-        values[i] = mcp.read_adc(i)
+    values = [mcp.read_adc(0)]
     # Print the ADC values.
-    foo=('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
+    foo = values
     output += foo 
     time.sleep(0.5)
 
