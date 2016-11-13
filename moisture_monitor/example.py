@@ -25,19 +25,24 @@ mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 
 print('Reading MCP3008 values, press Ctrl-C to quit...')
 # Print nice channel column headers.
-print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*range(8)))
 print('-' * 57)
 
 output = ""
 # Main program loop.
-values = []
+values = [0]*10
 for x in range(0,10):    
   # Read all the ADC channel values in a list.
     read = mcp.read_adc(0)
     # Print the ADC values.
-    values[x] = foo 
+    values[x] = read  
     time.sleep(0.5)
 
+average = sum(values)/len(values)
+
+print average 
+
+payload = "("+str(values)+","+str(average)+")" 
+
 url = 'http://www.pleasetakecareofmyplant.com/datatest.php'
-payload = {'foo':values}
+payload = {'foo':payload}
 r = requests.post(url, data=payload)
