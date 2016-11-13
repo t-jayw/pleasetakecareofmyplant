@@ -52,5 +52,5 @@ print average
 payload = "("+str(values)+","+str(average)+")" 
 
 url = 'http://www.pleasetakecareofmyplant.com/datatest.php'
-payload = {'foo':payload}
+payload = {'foo':payload, 'bar':average}
 r = requests.post(url, data=payload)
