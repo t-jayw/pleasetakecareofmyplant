@@ -34,7 +34,9 @@ end_time_formatted = end_time.strftime(date_format)
 url = 'http://api.openweathermap.org/data/2.5/weather?zip={ZIP},us&APPID={APIKEY}'
 url = url.format(ZIP=secret.zipcode, APIKEY=secret.weather_api)
 r = requests.get(url)
-description = r.json()['weather'][0]['main']
+#print r.json()
+#description = r.json()['weather'][0]['main']
+description = "this is broken idk why right now"
 
 # Daily Water Thread
 title = """

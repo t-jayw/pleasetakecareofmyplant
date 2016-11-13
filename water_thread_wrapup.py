@@ -61,17 +61,20 @@ recorded_yes = {}
 recorded_no ={}
 
 for x in comments:
-    score = get_comment_score(x)
-    tuple_log = (s.id, x.name, x.author.name, x.body, score)
-    if score == 1:
-        d = recorded_yes
-    elif score == -1:
-        d = recorded_no
-    else:
-        continue
-    if not d.has_key(tuple_log[2]):
-        d[tuple_log[2]] = tuple_log
-        reply_to_vote(x, tuple_log[4])
+    try:
+	    score = get_comment_score(x)
+	    tuple_log = (s.id, x.name, x.author.name, x.body, score)
+	    if score == 1:
+		d = recorded_yes
+	    elif score == -1:
+		d = recorded_no
+	    else:
+		continue
+	    if not d.has_key(tuple_log[2]):
+		d[tuple_log[2]] = tuple_log
+		reply_to_vote(x, tuple_log[4])
+    except:
+            continue
 
 total = len(recorded_yes) - len(recorded_no)
 
@@ -94,7 +97,6 @@ if total > 0:
     with open(path+'topup.txt', 'w') as f:
       f.write('1')
       f.close()
-      time.sleep(600)
       g.on_off(15)
 else:
     with open(path+'topup.txt', 'w') as f:
