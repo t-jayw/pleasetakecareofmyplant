@@ -2,3 +2,4 @@
 .gitignore
 *.txt
 *secret*
+*.jpg
